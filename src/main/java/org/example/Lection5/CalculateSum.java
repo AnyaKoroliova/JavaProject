@@ -8,16 +8,15 @@ public class CalculateSum {
         System.out.print("Введіть число: ");
         int number = console.nextInt();
 
-        if (number <= 0) {
-            System.out.print("Хибні вхідні параметри");
-            return;
-        }
-
-        int sum = calculateSum(number);
+        String sum = calculateSumUpToN(number);
         System.out.println(sum);
     }
 
-    public static int calculateSum(int n){
-        return (n * (n + 1) / 2);
+    public static String calculateSumUpToN(int n) {
+        if (n <= 0) {
+            return "Хибні вхідні параметри";
+        }
+
+        return (n * (n + 1) / 2) + "";
     }
 }
