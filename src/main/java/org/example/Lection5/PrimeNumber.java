@@ -8,11 +8,11 @@ public class PrimeNumber {
         System.out.print("Введіть число: ");
         int number = console.nextInt();
 
-        boolean result = isPrimeCheck(number);
+        boolean result = isPrime(number);
         System.out.println(result);
     }
 
-    public static boolean isPrimeCheck(int n){
+    public static boolean isPrime(int n){
         if (n < 2)
             return false;
         for (int i = 2; i <= Math.sqrt(n); i++) {
