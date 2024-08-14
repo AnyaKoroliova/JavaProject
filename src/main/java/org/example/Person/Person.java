@@ -1,14 +1,14 @@
 package org.example.Person;
 
-public class Person {
+public class Person implements Displayable{
     private String name;
     private int age;
-    private String profession;
+    private PersonRole role;
 
-    public Person(String name, int age, String profession) {
+    public Person(String name, int age, PersonRole role) {
         this.name = name;
         this.age = age;
-        this.profession = profession;
+        this.role = role;
     }
 
     public String getName() {
@@ -27,33 +27,14 @@ public class Person {
         this.age = age;
     }
 
-    public String getProfession() {
-        return profession;
+    public PersonRole getRole() {
+        return role;
     }
-
-    public void setProfession(String profession) {
-        this.profession = profession;
-    }
-
-    public static void main(String[] args) {
-        Person person1 = new Person("John", 30, "Інженер");
-        Person person2 = new Person("Mary", 25, "Вчитель");
-        Person person3 = new Person("Bob", 35, "Лікар");
-
-        person1.displayPersonInfo();
-        person2.displayPersonInfo();
-        person3.displayPersonInfo();
-
-        person1.changeProfession("Дизайнер");
-        System.out.println("Оновлена інформація про John:");
-        person1.displayPersonInfo();
-    }
-
-    public void changeProfession(String newProfession) {
-        this.profession = newProfession;
+    public void setRole(PersonRole role) {
+        this.role = role;
     }
 
     public void displayPersonInfo() {
-        System.out.println("Ім'я: " + name + "," + " Вік: " + age + "," + " Професія: " + profession + ",");
+        System.out.println("Ім'я: " + name + "," + " Вік: " + age + "," + " Професія: " + getRole());
     }
 }
