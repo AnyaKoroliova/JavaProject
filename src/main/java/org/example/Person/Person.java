@@ -1,9 +1,9 @@
 package org.example.Person;
 
-public class Person implements Displayable{
-    private String name;
-    private int age;
-    private PersonRole role;
+abstract class Person implements Displayable{
+    protected String name;
+    protected int age;
+    protected PersonRole role;
 
     public Person(String name, int age, PersonRole role) {
         this.name = name;
@@ -34,7 +34,8 @@ public class Person implements Displayable{
         this.role = role;
     }
 
-    public void displayPersonInfo() {
-        System.out.println("Ім'я: " + name + "," + " Вік: " + age + "," + " Професія: " + getRole());
-    }
+    public abstract String getGender();
+
+    @Override
+    public abstract void displayPersonInfo();
 }

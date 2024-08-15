@@ -7,8 +7,14 @@ public class Man extends Person {
         super(name, age, role);
     }
 
+    @Override
+    public String getGender(){
+        return GENDER;
+    }
+
+    @Override
     public void displayPersonInfo() {
         System.out.println("Ім'я: " + getName() + "," + " Вік: " + getAge() + ","
-                + " Стать: " + GENDER + "," + " Роль: " + getRole());
+                + " Стать: " + getGender() + "," + " Роль: " + getRole());
     }
 }
