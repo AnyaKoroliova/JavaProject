@@ -3,7 +3,7 @@ package org.example.Person;
 public class Woman extends Person {
     public static final String GENDER = "жінка";
 
-    public Woman(String name, int age, PersonRole role) {
+    public Woman(String name, int age, PersonRole role) throws InvalidPersonDataException {
         super(name, age, role);
     }
 
