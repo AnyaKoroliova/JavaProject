@@ -5,7 +5,13 @@ abstract class Person implements Displayable{
     protected int age;
     protected PersonRole role;
 
-    public Person(String name, int age, PersonRole role) {
+    public Person(String name, int age, PersonRole role) throws InvalidPersonDataException {
+            if (name == null || name.trim().isEmpty()) {
+                throw new InvalidPersonDataException("Name cannot be null or empty");
+            }
+            if (age < 0) {
+                throw new InvalidPersonDataException("Age cannot be negative");
+            }
         this.name = name;
         this.age = age;
         this.role = role;
