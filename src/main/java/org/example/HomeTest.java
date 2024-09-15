@@ -42,7 +42,7 @@ public class HomeTest {
             System.out.println("Background color of Sign up button is incorrect");
         }
     }
-    @AfterClass
+    @AfterMethod
     public void quit(){
         if (driver != null) {
             driver.quit();
