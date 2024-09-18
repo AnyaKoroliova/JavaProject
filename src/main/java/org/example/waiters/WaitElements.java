@@ -19,13 +19,7 @@ public class WaitElements {
     }
 
     public boolean waitFotPageTitle(String title){
-        boolean waitTitle = true;
-        try {
-            wait.until(ExpectedConditions.titleIs(title));
-        } catch (TimeoutException e){
-            waitTitle = false;
-        }
-        return waitTitle;
+        return wait.until(ExpectedConditions.titleIs(title));
     }
 
     public WebElement waitVisibilityOfElement(By element){
