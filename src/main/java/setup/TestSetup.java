@@ -2,6 +2,7 @@ package setup;
 
 import browserfactory.BrowserFactory;
 import browserfactory.BrowserType;
+import com.codeborne.selenide.Selenide;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -21,6 +22,8 @@ public class TestSetup {
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
         //driver = BrowserFactory.createWebDriver(BrowserType.CHROME);
+
+        Selenide.open();
     }
 
     @AfterMethod
