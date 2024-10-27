@@ -5,28 +5,41 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class BrowserFactory {
-    public static WebDriver createWebDriver(BrowserType browserType) {
-        WebDriver driver;
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-        switch (browserType) {
-            case CHROME:
-                System.setProperty("webdriver.chrome.driver", "C:\\Users\\anyak\\Downloads\\chromedriver-win64 (1)\\chromedriver-win64\\chromedriver.exe");
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("--remote-allow-origins=*");
-                driver = new ChromeDriver();
-                break;
+    private BrowserFactory(){}
 
-            case FIREFOX:
-                WebDriverManager.firefoxdriver().setup();
-                driver = new FirefoxDriver();
-                break;
+public static WebDriver getDriver() {
+    return driver.get();
+}
 
-            default:
-                throw new IllegalArgumentException("Unsupported browser: " + browserType);
+    public static WebDriver createWebDriver(String browser) {
+        if (driver.get() == null) {
+            switch (browser.toLowerCase()) {
+                case "chrome":
+                    WebDriverManager.chromedriver().setup();
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    driver.set(new ChromeDriver(chromeOptions));
+                    break;
+                case "firefox":
+                    WebDriverManager.firefoxdriver().setup();
+                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+                    driver.set(new FirefoxDriver(firefoxOptions));
+                    break;
+                default:
+                    throw new IllegalArgumentException("Browser " + browser + " is not supported.");
+            }
         }
+        return driver.get();
+    }
 
-        return driver;
+    public static void closeWebDriver() {
+        if (driver.get() != null) {
+            driver.get().quit();
+            driver.remove();
+        }
     }
 }
